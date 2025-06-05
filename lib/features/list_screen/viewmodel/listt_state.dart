@@ -1,12 +1,15 @@
-sealed class ListState {
-  const ListState();
-}
+import 'package:recipe_application_main/features/list_screen/model/ingredient_model.dart';
 
-class ListInitial extends ListState {
-  const ListInitial();
-}
+sealed class ListState {}
 
-class ListUpdated extends ListState {
-  final List<String> items;
-  const ListUpdated(this.items);
+class InitialState extends ListState {}
+
+class LoadedState extends ListState {
+  final List<IngredientModel> ingredients;
+  final List<String> addedItems;
+
+  LoadedState({
+    required this.ingredients,
+    required this.addedItems,
+  });
 }

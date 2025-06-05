@@ -82,14 +82,14 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                   ),
                   const Padding(
-                    padding: EdgeInsets.only(left: 30, top: 10),
+                    padding: EdgeInsets.only(left: 30, top: 5),
                     child: Align(
                       alignment: Alignment.topLeft,
                       child: Text("Hi Suniya!", style: TextStyle(fontSize: 20)),
                     ),
                   ),
                   const Padding(
-                    padding: EdgeInsets.symmetric(horizontal: 25),
+                    padding: EdgeInsets.symmetric(horizontal: 20),
                     child: Text("What would you like to cook today?",
                       style: TextStyle(fontSize: 25, fontWeight: FontWeight.bold), textAlign: TextAlign.center),
                   ),
@@ -207,7 +207,7 @@ class _HomeScreenState extends State<HomeScreen> {
         padding: const EdgeInsets.all(8),
         child: Wrap(
           spacing: 6,
-          children: const [
+          children: [
             ColumnCatgContainer(imagePath: "assets/images/breakfast.png", catgName: "Breakfast"),
             ColumnCatgContainer(imagePath: "assets/images/lunch.png", catgName: "Lunch"),
             ColumnCatgContainer(imagePath: "assets/images/dinner.png", catgName: "Dinner"),

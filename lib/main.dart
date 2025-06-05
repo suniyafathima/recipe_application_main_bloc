@@ -37,7 +37,7 @@ class MyApp extends StatelessWidget {
         BlocProvider(create: (_) => RecipeDetailsBloc()),
         BlocProvider(create: (_) => SearchBloc()),
         BlocProvider(create: (_) => SearchResultsBloc()),
-        BlocProvider(create: (_) => ListtBloc()),
+        BlocProvider(create: (_) => ListBloc()),
        
   
       ],

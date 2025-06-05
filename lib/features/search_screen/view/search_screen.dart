@@ -33,6 +33,14 @@ class _SearchScreenViewState extends State<SearchScreenView> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+       appBar: AppBar(
+         centerTitle: true,
+         backgroundColor: Colors.transparent,
+         title:  const Text("Search", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28)),
+        leading: IconButton(onPressed: (){
+          Navigator.pop(context);
+        }, icon: Icon(Icons.arrow_back_ios)),
+      ),
       body: AnnotatedRegion<SystemUiOverlayStyle>(
         value: const SystemUiOverlayStyle(statusBarIconBrightness: Brightness.dark),
         child: Padding(
@@ -42,8 +50,7 @@ class _SearchScreenViewState extends State<SearchScreenView> {
               return Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  const Text("Search", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 28)),
-                  const SizedBox(height: 10),
+                   const SizedBox(height: 10),
                   TextField(
                     controller: searchc,
                     cursorWidth: 2,
@@ -67,6 +74,33 @@ class _SearchScreenViewState extends State<SearchScreenView> {
                       ),
                     ),
                   ),
+                  const SizedBox(height: 16),
+                  const Text("Recent searches", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
+                 ListView.builder(
+                   shrinkWrap: true,
+                   itemCount: 1,
+                   itemBuilder: (context, index) {
+                  
+                   return ListTile(
+                   leading: ClipRRect(
+                   borderRadius: BorderRadius.circular(8),
+                   child: Image.asset(
+                   "assets/images/noodless.png",
+                   width: 60,
+                   height: 60,
+                   fit: BoxFit.cover,
+                    ),
+                  ),
+                  title: Text("Chicken Noodles", style: TextStyle(fontWeight: FontWeight.bold)),
+                    subtitle: Text("Breakfast, 30 min"),
+                     trailing: Icon(Icons.arrow_forward_ios, size: 16),
+                   onTap: () {
+             
+                     },
+                    );
+                   },
+                  ),
+    
                   const SizedBox(height: 16),
                   const Text("Categories", style: TextStyle(fontWeight: FontWeight.bold, fontSize: 20)),
                   const SizedBox(height: 16),

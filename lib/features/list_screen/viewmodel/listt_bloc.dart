@@ -2,25 +2,48 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:recipe_application_main/features/list_screen/viewmodel/listt_event.dart';
 import 'package:recipe_application_main/features/list_screen/viewmodel/listt_state.dart';
 
-class ListtBloc extends Bloc<ListEvent, ListState> {
-  ListtBloc() : super(const ListInitial()) {
-    final List<String> _items = [];
-
-    on<AddItem>((event, emit) {
-      _items.add(event.item);
-      emit(ListUpdated(List.from(_items)));
+class ListBloc extends Bloc<ListEvent, ListState> {
+  ListBloc() : super(InitialState()) {
+    on<LoadList>((event, emit) {
+      emit(LoadedState(
+        ingredients: event.ingredients,
+        addedItems: [],
+      ));
     });
 
-    on<RemoveItem>((event, emit) {
-      if (event.index >= 0 && event.index < _items.length) {
-        _items.removeAt(event.index);
-        emit(ListUpdated(List.from(_items)));
+    on<AddToList>((event, emit) {
+      if (state is LoadedState) {
+        final currentState = state as LoadedState;
+        final updated = List<String>.from(currentState.addedItems)..add(event.newItem);
+        emit(LoadedState(
+          ingredients: currentState.ingredients,
+          addedItems: updated,
+        ));
       }
     });
 
-    on<ClearAll>((event, emit) {
-      _items.clear();
-      emit(ListUpdated(List.from(_items)));
+    on<RemoveFromList>((event, emit) {
+      if (state is LoadedState) {
+        final currentState = state as LoadedState;
+        final updated = List<String>.from(currentState.addedItems);
+        if (event.index < updated.length) {
+          updated.removeAt(event.index);
+        }
+        emit(LoadedState(
+          ingredients: currentState.ingredients,
+          addedItems: updated,
+        ));
+      }
+    });
+
+    on<ClearList>((event, emit) { 
+      if (state is LoadedState) {
+        final currentState = state as LoadedState;
+        emit(LoadedState(
+          ingredients: currentState.ingredients,
+          addedItems: [],
+        ));
+      }
     });
   }
 }

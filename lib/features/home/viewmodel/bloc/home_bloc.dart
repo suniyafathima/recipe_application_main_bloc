@@ -4,7 +4,7 @@ part 'home_event.dart';
 part 'home_state.dart';
 
 class HomeBloc extends Bloc<HomeEvent, HomeState> {
-  final List<Recipemodel> _items = [
+  final List<Recipemodel> items = [
     Recipemodel(imagePath: "assets/images/chickenzuccini.jpg", name: "Chicken zuccini", rating: 4.5, time: "25m"),
     Recipemodel(imagePath: "assets/images/easybourboncake.jpg", name: "bourbon cake", rating: 4, time: "20m"),
     Recipemodel(imagePath: "assets/images/noodlessp.png", name: "Chilly Egg noodles", rating: 3.5, time: "30m"),
@@ -18,12 +18,12 @@ class HomeBloc extends Bloc<HomeEvent, HomeState> {
     on<LoadRecipesEvent>((event, emit) async {
       emit(const HomeLoading());
       await Future.delayed(Duration(seconds: 1));
-      emit(HomeLoaded(recipes: List.from(_items)));
+      emit(HomeLoaded(recipes: List.from(items)));
     });
 
     on<ToggleLikeRecipeEvent>((event, emit) {
-      _items[event.index].isLiked = !_items[event.index].isLiked;
-      emit(HomeLoaded(recipes: List.from(_items)));
+      items[event.index].isLiked = !items[event.index].isLiked;
+      emit(HomeLoaded(recipes: List.from(items)));
     });
   }
 }

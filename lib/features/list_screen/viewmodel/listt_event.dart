@@ -1,17 +1,23 @@
-sealed class ListEvent {
-  const ListEvent();
+import 'package:recipe_application_main/features/list_screen/model/ingredient_model.dart';
+
+sealed class ListEvent {}
+
+class LoadList extends ListEvent {
+  final List<IngredientModel> ingredients;
+
+  LoadList(this.ingredients);
 }
 
-class AddItem extends ListEvent {
-  final String item;
-  const AddItem(this.item);
+class AddToList extends ListEvent {
+  final String newItem;
+
+  AddToList(this.newItem);
 }
 
-class RemoveItem extends ListEvent {
+class RemoveFromList extends ListEvent {
   final int index;
-  const RemoveItem(this.index);
+
+  RemoveFromList(this.index);
 }
 
-class ClearAll extends ListEvent {
-  const ClearAll();
-}
+class ClearList extends ListEvent {}

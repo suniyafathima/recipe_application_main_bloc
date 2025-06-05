@@ -11,25 +11,25 @@ class FavoriteScreen extends StatefulWidget {
 }
 
 class _FavoriteScreenState extends State<FavoriteScreen> {
-  late final FavoriteBloc _bloc;
+  late final FavoriteBloc bloc;
 
   @override
   void initState() {
     super.initState();
-    _bloc = FavoriteBloc();
-    _bloc.add(LoadFavorites());
+    bloc = FavoriteBloc();
+    bloc.add(LoadFavorites());
   }
 
   @override
   void dispose() {
-    _bloc.close();
+    bloc.close();
     super.dispose();
   }
 
   @override
   Widget build(BuildContext context) {
     return BlocProvider(
-      create: (_) => _bloc,
+      create: (_) => bloc,
       child: Scaffold(
         appBar: AppBar(
           backgroundColor: Colors.transparent,

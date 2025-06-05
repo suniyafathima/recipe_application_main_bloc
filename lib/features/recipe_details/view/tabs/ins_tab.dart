@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:recipe_application_main/Repository/data/dummydb.dart';
 import 'package:recipe_application_main/global_widget/reusable_button.dart';
 import 'package:recipe_application_main/utils/constants/color_constants.dart';
 import 'package:recipe_application_main/features/cooking_step_screen/view/cooking_step_screen.dart';
@@ -8,26 +9,11 @@ class Instab extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    List<Map<String, dynamic>> steps = [
-      {
-        "instruction": "Place noodles in a heatproof bowl. Cover with boiling water. Set aside for 5 mins or until noodles separate. Drain.",
-        "duration": 60
-      },
-      {
-        "instruction": "Heat oil in a wok. Add curry powder and stir-fry for 1 min. Add oyster sauce, soy sauce, noodles, and ½ cup (125ml) water. Stir-fry for 2 mins until combined.",
-        "duration": 90
-      },
-      {
-        "instruction": "Add peas, choy sum, wombok, and spring onion. Stir-fry for 1-2 mins until wombok wilts. Serve hot.",
-        "duration": 30
-      }
-    ];
-
     return Column(
       children: [
         Column(
-          children: List.generate(steps.length, (index) {
-            return buildStepItem("Step ${index + 1}", steps[index]["instruction"], isLast: index == steps.length - 1);
+          children: List.generate(Dummydb.steps.length, (index) {
+            return buildStepItem("Step ${index + 1}", Dummydb.steps[index]["instruction"], isLast: index == Dummydb.steps.length - 1);
           }),
         ),
         ReusableButton(
@@ -35,7 +21,7 @@ class Instab extends StatelessWidget {
             Navigator.push(
               context,
               MaterialPageRoute(
-                builder: (context) => CookingStepScreen(steps: steps),
+                builder: (context) => CookingStepScreen(steps: Dummydb.steps),
               ),
             );
           },
